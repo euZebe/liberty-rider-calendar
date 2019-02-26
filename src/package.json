@@ -1,0 +1,15 @@
+{
+  "name": "react-day-picker examples/localization-moment",
+  "version": "0.0.0",
+  "description": "A simple example deployed using react-codesandboxer",
+  "main": "index.js",
+  "dependencies": {
+    "date-fns": "next",
+    "moment": "latest",
+    "prop-types": "15.7.2",
+    "react": "latest",
+    "react-day-picker": "latest",
+    "react-dom": "latest",
+    "react-helmet": "latest"
+  }
+}
