@@ -32,3 +32,7 @@ export function getDates(startDate, stopDate) {
   }
   return dateArray;
 }
+
+export function futureDateOrToday(date) {
+  return new Date(Math.max(new Date(date), new Date()));
+}

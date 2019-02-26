@@ -22,15 +22,18 @@ const eventDays = data.events
   .reduce(
     (acc, e) =>
       e.dateTo
-        ? [...acc, ...utils.getDates(new Date(e.dateFrom), new Date(e.dateTo))]
+        ? [
+            ...acc,
+            ...utils.getDates(
+              utils.futureDateOrToday(e.dateFrom),
+              new Date(e.dateTo)
+            )
+          ]
         : [...acc, new Date(e.dateFrom)],
     []
   );
 
-console.log(eventDays);
-// TODO: handle dateTo for eventDays
-
-export default class LocalizedExample extends React.Component {
+export default class Calendar extends React.Component {
   state = { selectedDay: undefined };
 
   getEvents = () => {
