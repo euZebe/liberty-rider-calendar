@@ -42,6 +42,13 @@
       "location": "Dans toute la France",
       "description": "Du 25 au 29, pour chaque km parcouru avec Liberty Rider, 10 centimes sont reversés à l’association de soutien aux victimes d’accident à moto. Du 25 au 29, pour chaque km parcouru avec Liberty Rider, 10 centimes sont reversés à l’association de soutien aux victimes d’accident à moto.",
       "link": "http://liberty-rider.com"
+    },
+    {
+      "title": "Voici venu le mois de mai",
+      "dateFrom": "2019-04-29",
+      "dateTo": "2019-05-28",
+      "location": "Nice",
+      "description": "blablabla"
     }
   ]
 }

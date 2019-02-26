@@ -125,3 +125,9 @@ body {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+
+.readMore {
+  display: block;
+  margin-top: 1rem;
+  text-decoration: underline;
+}

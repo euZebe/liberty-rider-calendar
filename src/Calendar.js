@@ -9,7 +9,7 @@ import moment from "moment";
 // Make sure moment.js has the required locale data
 import "moment/locale/fr";
 
-import Event from "./Event";
+import Event from "./event/Event";
 import Navbar from "./calendar/Navbar";
 import Weekday from "./calendar/Weekday";
 import MonthInTimeline from "./MonthInTimeline";
