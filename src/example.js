@@ -27,6 +27,15 @@ function isEventForDate(event, selectedDay) {
     : dateFrom === selection;
 }
 
+function Weekday({ weekday, className, localeUtils, locale }) {
+  const weekdayName = localeUtils.formatWeekdayLong(weekday, locale);
+  return (
+    <div className={className} title={weekdayName}>
+      {weekdayName.slice(0, 1)}
+    </div>
+  );
+}
+
 export default class LocalizedExample extends React.Component {
   state = { selectedDay: undefined };
 
@@ -51,6 +60,7 @@ export default class LocalizedExample extends React.Component {
           showOutsideDays
           onDayClick={this.handleDayClick}
           fromMonth={new Date()}
+          weekdayElement={Weekday}
         />
 
         <div>{this.getEvents()}</div>
