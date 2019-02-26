@@ -25,12 +25,12 @@ export default class Event extends React.Component {
   render() {
     const { dateFrom, title, location, description, link, dateTo } = this.props;
     return (
-      <div className="event">
+      <div id={dateFrom} className="event">
         <div className="eventTitle">{title}</div>
         <div className="eventSubtitle">
           {this.formatDate(dateFrom, dateTo)} - {location}
         </div>
-        <div className="eventDescription">{this.truncate(description)}</div>
+        <div className="eventDescription">{description}</div>
       </div>
     );
   }

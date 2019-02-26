@@ -27,12 +27,12 @@ export function getDates(startDate, stopDate) {
   var dateArray = [];
   var currentDate = startDate;
   while (currentDate <= stopDate) {
-    dateArray.push(new Date(currentDate));
+    dateArray.push(currentDate);
     currentDate = currentDate.addDays(1);
   }
   return dateArray;
 }
 
 export function futureDateOrToday(date) {
-  return new Date(Math.max(new Date(date), new Date()));
+  return new Date(Math.max(date, new Date()));
 }

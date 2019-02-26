@@ -15,33 +15,58 @@ import Weekday from "./calendar/Weekday";
 import * as utils from "./date-utils";
 import "./styles.css";
 
-import data from "./events.json";
-
-const eventDays = data.events
-  .filter(utils.isEventPendingOrFuture) // do not mark past days as "with event"
-  .reduce(
-    (acc, e) =>
-      e.dateTo
-        ? [
-            ...acc,
-            ...utils.getDates(
-              utils.futureDateOrToday(e.dateFrom),
-              new Date(e.dateTo)
-            )
-          ]
-        : [...acc, new Date(e.dateFrom)],
-    []
-  );
-
 export default class Calendar extends React.Component {
   state = { selectedDay: undefined };
 
+  getEventDays = () => {
+    const { events } = this.props;
+    return events
+      .filter(utils.isEventPendingOrFuture) // do not mark past days as "with event"
+      .reduce(
+        (acc, e) =>
+          e.dateTo
+            ? [
+                ...acc,
+                ...utils.getDates(utils.futureDateOrToday(e.dateFrom), e.dateTo)
+              ]
+            : [...acc, e.dateFrom],
+        []
+      );
+  };
+
+  sortEvents(a, b) {
+    if (a.dateFrom === b.dateFrom) {
+      return a.title > b.title ? 1 : -1;
+    }
+    return moment(a.dateFrom) - moment(b.dateFrom);
+  }
+
   getEvents = () => {
-    const { selectedDay } = this.state;
-    return data.events
+    const { events } = this.props;
+    const filteredEvents = events
       .filter(utils.isEventPendingOrFuture) // hide past events
-      .sort((a, b) => moment(a.dateFrom) - moment(b.dateFrom))
-      .map(e => <Event {...e} />);
+      .sort(this.sortEvents);
+
+    const eventsGroupedByMonth = [
+      <div>{MomentLocaleUtils.getMonths("fr")[new Date().getMonth()]}</div>
+    ];
+    for (let i = 0; i < filteredEvents.length; i++) {
+      const currentEvent = filteredEvents[i];
+      eventsGroupedByMonth.push(<Event {...currentEvent} />);
+
+      const currentMonth = currentEvent.dateFrom.getMonth();
+      if (
+        i < filteredEvents.length - 1 &&
+        currentEvent.dateFrom.getMonth() !==
+          filteredEvents[i + 1].dateFrom.getMonth()
+      ) {
+        eventsGroupedByMonth.push(
+          <div>{MomentLocaleUtils.getMonths("fr")[currentMonth + 1]}</div>
+        );
+      }
+    }
+    //debugger;
+    return eventsGroupedByMonth;
   };
 
   handleDayClick = selectedDay => {
@@ -54,7 +79,7 @@ export default class Calendar extends React.Component {
       <div>
         <DayPicker
           localeUtils={MomentLocaleUtils}
-          selectedDays={eventDays}
+          selectedDays={this.getEventDays()}
           locale="fr"
           showOutsideDays
           onDayClick={this.handleDayClick}

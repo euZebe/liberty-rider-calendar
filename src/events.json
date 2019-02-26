@@ -8,6 +8,13 @@
       "link": "http://liberty-rider.com"
     },
     {
+      "title": "ZZZzzz",
+      "dateFrom": "2019-03-25",
+      "location": "Circuit les oiseaux",
+      "description": "événement le même jour que journée piste macif, devrait apparaître en 2e",
+      "link": "http://liberty-rider.com"
+    },
+    {
       "title": "Journée Piste Macif",
       "dateFrom": "2019-03-25",
       "location": "Circuit Carole",
@@ -21,6 +28,12 @@
       "location": "Lyon",
       "description": "Retrouve l’équipe Macif au salon de la moto de Lyon pour gagner une Triumph Street Triple RS, au stand 104, Hall B. Et pas mal d'autres infos",
       "link": "http://liberty-rider.com"
+    },
+    {
+      "title": "Foire au guidon",
+      "dateFrom": "2019-02-26",
+      "location": "La Souterraine",
+      "description": "plouf"
     },
     {
       "title": "MotoThon Liberty Macif",

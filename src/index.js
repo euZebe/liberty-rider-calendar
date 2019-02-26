@@ -8,6 +8,6 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import Calendar from "./Calendar";
+import Calendar from "./CalendarContainer";
 
 ReactDOM.render(<Calendar />, document.getElementById("root"));
