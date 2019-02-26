@@ -10,43 +10,38 @@ import moment from "moment";
 import "moment/locale/fr";
 
 import Event from "./Event";
-import Navbar from "./Navbar";
+import Navbar from "./calendar/Navbar";
+import Weekday from "./calendar/Weekday";
+import * as utils from "./date-utils";
 import "./styles.css";
 
 import data from "./events.json";
 
-const eventDays = data.events.map(e => new Date(e.dateFrom));
-
-// TODO: handle dateTo for eventDays
-
-function isEventForDate(event, selectedDay) {
-  const dateTo = event.dateTo ? moment(event.dateTo).startOf("day") : undefined;
-  const dateFrom = moment(event.dateFrom).startOf("day");
-  const selection = moment(selectedDay).startOf("day");
-  return dateTo
-    ? dateTo >= selection && dateFrom <= selection
-    : dateFrom === selection;
-}
-
-function Weekday({ weekday, className, localeUtils, locale }) {
-  const weekdayName = localeUtils.formatWeekdayLong(weekday, locale);
-  return (
-    <div className={className} title={weekdayName}>
-      {weekdayName.slice(0, 1)}
-    </div>
+const eventDays = data.events
+  .filter(utils.isEventPendingOrFuture) // do not mark past days as "with event"
+  .reduce(
+    (acc, e) =>
+      e.dateTo
+        ? [...acc, ...utils.getDates(new Date(e.dateFrom), new Date(e.dateTo))]
+        : [...acc, new Date(e.dateFrom)],
+    []
   );
-}
+
+console.log(eventDays);
+// TODO: handle dateTo for eventDays
 
 export default class LocalizedExample extends React.Component {
   state = { selectedDay: undefined };
 
   getEvents = () => {
     const { selectedDay } = this.state;
-    return data.events.map(e => <Event {...e} />);
+    return data.events
+      .filter(utils.isEventPendingOrFuture) // hide past events
+      .sort((a, b) => moment(a.dateFrom) - moment(b.dateFrom))
+      .map(e => <Event {...e} />);
   };
 
   handleDayClick = selectedDay => {
-    console.log(selectedDay);
     this.setState({ selectedDay });
   };
 

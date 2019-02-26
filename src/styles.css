@@ -20,6 +20,9 @@ body {
   color: #b3b3b3;
   text-transform: capitalize;
 }
+.DayPicker-NavBar:nth-child(n + 1) {
+  cursor: pointer;
+}
 
 .chevron::before {
   border-style: solid;

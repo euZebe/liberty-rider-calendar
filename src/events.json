@@ -1,6 +1,13 @@
 {
   "events": [
     {
+      "title": "Chandeleur",
+      "dateFrom": "2019-02-06",
+      "location": "Rovaniemi",
+      "description": "Mangez des crêpes !",
+      "link": "http://liberty-rider.com"
+    },
+    {
       "title": "Journée Piste Macif",
       "dateFrom": "2019-03-25",
       "location": "Circuit Carole",
