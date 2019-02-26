@@ -1,6 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default class EventDescription extends React.PureComponent {
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    eventID: PropTypes.string.isRequired
+  };
+
   state = { folded: true };
 
   toggleFolded = () => {
@@ -9,7 +15,7 @@ export default class EventDescription extends React.PureComponent {
   };
 
   render() {
-    const { text } = this.props;
+    const { text, eventID } = this.props;
     const { folded } = this.state;
 
     const splittedText = text.split(" ");
@@ -20,7 +26,9 @@ export default class EventDescription extends React.PureComponent {
             .slice(0, 15)
             .join(" ")
             .concat("...")}
-          <div className="readMore">Lire la suite</div>
+          <a href={`#${eventID}`} className="readMore">
+            Lire la suite
+          </a>
         </div>
       ) : (
         <div onClick={this.toggleFolded} className="eventDescription">

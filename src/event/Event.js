@@ -21,15 +21,28 @@ export default class Event extends React.Component {
         )}`
       : `Le ${moment(dateFrom).format("DD MMMM")}`;
 
+  openExternalLink = () => {
+    const { link } = this.props;
+    if (link) {
+      console.log("TODO: redirect to ", link);
+    }
+  };
+
   render() {
     const { dateFrom, title, location, description, link, dateTo } = this.props;
+    const eventID = title.replace(/\s/g, "-");
     return (
-      <div id={title} className="event">
-        <div className="eventTitle">{title}</div>
-        <div className="eventSubtitle">
-          {this.formatDate(dateFrom, dateTo)} - {location}
+      <div id={dateFrom} className="event">
+        <div onClick={this.openExternalLink}>
+          {link && <span className="chevron right link" />}
+          <div id={eventID} className="eventTitle">
+            {title}
+          </div>
+          <div className="eventSubtitle">
+            {this.formatDate(dateFrom, dateTo)} - {location}
+          </div>
         </div>
-        <EventDescription text={description} eventID={title} />
+        <EventDescription text={description} eventID={eventID} />
       </div>
     );
   }

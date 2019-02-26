@@ -100,6 +100,12 @@ body {
   padding: 10px;
 }
 
+.chevron.link {
+  position: relative;
+  float: right;
+  top: 1rem;
+}
+
 .eventTitle {
   padding-top: 0rem;
   color: #fa455c;
