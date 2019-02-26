@@ -10,6 +10,7 @@ import moment from "moment";
 import "moment/locale/fr";
 
 import Event from "./Event";
+import Navbar from "./Navbar";
 import "./styles.css";
 
 import data from "./events.json";
@@ -61,6 +62,7 @@ export default class LocalizedExample extends React.Component {
           onDayClick={this.handleDayClick}
           fromMonth={new Date()}
           weekdayElement={Weekday}
+          navbarElement={<Navbar />}
         />
 
         <div>{this.getEvents()}</div>
