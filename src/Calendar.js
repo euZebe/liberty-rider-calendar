@@ -12,6 +12,7 @@ import "moment/locale/fr";
 import Event from "./Event";
 import Navbar from "./calendar/Navbar";
 import Weekday from "./calendar/Weekday";
+import MonthInTimeline from "./MonthInTimeline";
 import * as utils from "./date-utils";
 import "./styles.css";
 
@@ -48,7 +49,9 @@ export default class Calendar extends React.Component {
       .sort(this.sortEvents);
 
     const eventsGroupedByMonth = [
-      <div>{MomentLocaleUtils.getMonths("fr")[new Date().getMonth()]}</div>
+      <MonthInTimeline
+        name={MomentLocaleUtils.getMonths("fr")[new Date().getMonth()]}
+      />
     ];
     for (let i = 0; i < filteredEvents.length; i++) {
       const currentEvent = filteredEvents[i];
@@ -61,7 +64,9 @@ export default class Calendar extends React.Component {
           filteredEvents[i + 1].dateFrom.getMonth()
       ) {
         eventsGroupedByMonth.push(
-          <div>{MomentLocaleUtils.getMonths("fr")[currentMonth + 1]}</div>
+          <MonthInTimeline
+            name={MomentLocaleUtils.getMonths("fr")[currentMonth + 1]}
+          />
         );
       }
     }
