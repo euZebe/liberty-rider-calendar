@@ -18,11 +18,22 @@ export default function Navbar({
   return (
     <div className={className}>
       {showPreviousButton ? (
-        <span onClick={() => onPreviousClick()}>&lt; {prev}</span>
+        <div onClick={() => onPreviousClick()}>
+          <span className="chevron left" />
+          {prev}
+        </div>
       ) : (
         <span />
       )}
-      {showNextButton && <span onClick={() => onNextClick()}>{next} &gt;</span>}
+
+      {showNextButton ? (
+        <div onClick={() => onNextClick()}>
+          {next}
+          <span className="chevron right" />
+        </div>
+      ) : (
+        <span />
+      )}
     </div>
   );
 }
